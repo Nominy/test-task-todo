@@ -40,7 +40,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist/to-do-test-task
+          path: ./dist/to-do-test-task/browser
 
   deploy:
     environment:
