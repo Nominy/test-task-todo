@@ -1,0 +1,235 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+}
+
+.loading-state,
+.error-state {
+  .loading-content,
+  .error-content {
+    text-align: center;
+    padding: 40px 20px;
+    
+    .error-icon {
+      font-size: 64px;
+      width: 64px;
+      height: 64px;
+      color: #f44336;
+      margin-bottom: 16px;
+    }
+    
+    h3 {
+      margin: 16px 0 8px 0;
+      color: rgba(0, 0, 0, 0.87);
+    }
+    
+    p {
+      margin: 8px 0 24px 0;
+      color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}
+
+.task-detail {
+  .detail-card {
+    .task-header {
+      width: 100%;
+      
+      mat-chip-set {
+        margin-bottom: 16px;
+      }
+      
+      .task-title {
+        margin: 0;
+        font-size: 2rem;
+        font-weight: 500;
+        line-height: 1.2;
+        word-wrap: break-word;
+        color: rgba(0, 0, 0, 0.87);
+        
+        &.completed {
+          text-decoration: line-through;
+          color: rgba(0, 0, 0, 0.6);
+        }
+        
+        @media (max-width: 768px) {
+          font-size: 1.5rem;
+        }
+      }
+    }
+    
+    mat-card-content {
+      padding: 24px;
+      
+      @media (max-width: 768px) {
+        padding: 16px;
+      }
+    }
+    
+    .content-section {
+      margin-bottom: 24px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      h3 {
+        margin: 0 0 16px 0;
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.87);
+        
+        @media (max-width: 768px) {
+          font-size: 1.125rem;
+        }
+      }
+      
+      .description-content {
+        .task-description {
+          font-size: 1rem;
+          line-height: 1.6;
+          color: rgba(0, 0, 0, 0.87);
+          margin: 0;
+          white-space: pre-wrap;
+          word-wrap: break-word;
+        }
+        
+        .no-description {
+          font-style: italic;
+          color: rgba(0, 0, 0, 0.6);
+          margin: 0;
+        }
+      }
+      
+      .metadata-grid {
+        display: grid;
+        gap: 16px;
+        
+        @media (min-width: 768px) {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        
+        .metadata-item {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          
+          @media (min-width: 768px) {
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+          }
+          
+          strong {
+            color: rgba(0, 0, 0, 0.87);
+            font-weight: 500;
+            min-width: 80px;
+          }
+          
+          span {
+            color: rgba(0, 0, 0, 0.6);
+            
+            @media (min-width: 768px) {
+              flex: 1;
+            }
+          }
+          
+          code {
+            background-color: rgba(0, 0, 0, 0.08);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.875rem;
+            color: rgba(0, 0, 0, 0.87);
+            
+            @media (min-width: 768px) {
+              flex: 1;
+            }
+          }
+          
+          mat-chip {
+            align-self: flex-start;
+            
+            @media (min-width: 768px) {
+              flex: 1;
+            }
+          }
+        }
+      }
+    }
+    
+    mat-divider {
+      margin: 24px 0;
+      
+      @media (max-width: 768px) {
+        margin: 16px 0;
+      }
+    }
+    
+    mat-card-actions {
+      padding: 16px 24px 24px;
+      flex-wrap: wrap;
+      gap: 8px;
+      
+      @media (max-width: 768px) {
+        padding: 16px;
+        
+        button {
+          font-size: 0.875rem;
+          
+          mat-icon {
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+      
+      @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: stretch;
+        
+        button {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
+  }
+}
+
+mat-chip {
+  font-size: 0.875rem;
+  
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    margin-right: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 8px;
+  }
+  
+  .detail-card {
+    mat-card-header {
+      padding: 16px 16px 0;
+      
+      .task-title {
+        font-size: 1.375rem;
+      }
+    }
+  }
+} 

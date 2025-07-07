@@ -1,0 +1,121 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button mat-icon-button (click)="onBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <span>Task Details</span>
+    <span class="spacer"></span>
+    <button *ngIf="task" mat-icon-button (click)="onEditTask()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="container">
+  <div *ngIf="isLoading" class="loading-state">
+    <mat-card>
+      <mat-card-content>
+        <div class="loading-content">
+          <p>Loading task details...</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div *ngIf="!isLoading && task" class="task-detail">
+    <mat-card class="detail-card">
+      <mat-card-header>
+        <div class="task-header">
+          <mat-chip-set>
+            <mat-chip [color]="getStatusColor(task.status)" selected>
+              <mat-icon>{{ getStatusIcon(task.status) }}</mat-icon>
+              {{ task.status | titlecase }}
+            </mat-chip>
+          </mat-chip-set>
+          <h1 class="task-title" [class.completed]="task.status === 'completed'">
+            {{ task.title }}
+          </h1>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="content-section">
+          <h3>Description</h3>
+          <div class="description-content">
+            <p *ngIf="task.description; else noDescription" class="task-description">
+              {{ task.description }}
+            </p>
+            <ng-template #noDescription>
+              <p class="no-description">No description provided</p>
+            </ng-template>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="content-section">
+          <h3>Task Information</h3>
+          <div class="metadata-grid">
+            <div class="metadata-item">
+              <strong>Status:</strong>
+              <mat-chip [color]="getStatusColor(task.status)" selected>
+                <mat-icon>{{ getStatusIcon(task.status) }}</mat-icon>
+                {{ task.status | titlecase }}
+              </mat-chip>
+            </div>
+            
+            <div class="metadata-item">
+              <strong>Created:</strong>
+              <span>{{ formatDate(task.createdAt) }}</span>
+            </div>
+            
+            <div class="metadata-item">
+              <strong>Task ID:</strong>
+              <code>{{ task.id }}</code>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+
+      <mat-divider></mat-divider>
+
+      <mat-card-actions align="end">
+        <button mat-button (click)="onBack()">
+          <mat-icon>arrow_back</mat-icon>
+          Back to Tasks
+        </button>
+        
+        <button mat-button (click)="onToggleStatus()" [color]="task.status === 'completed' ? 'warn' : 'primary'">
+          <mat-icon>{{ task.status === 'completed' ? 'undo' : 'check' }}</mat-icon>
+          {{ task.status === 'completed' ? 'Mark Incomplete' : 'Mark Complete' }}
+        </button>
+        
+        <button mat-raised-button color="primary" (click)="onEditTask()">
+          <mat-icon>edit</mat-icon>
+          Edit Task
+        </button>
+        
+        <button mat-button color="warn" (click)="onDeleteTask()">
+          <mat-icon>delete</mat-icon>
+          Delete
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div *ngIf="!isLoading && !task" class="error-state">
+    <mat-card>
+      <mat-card-content>
+        <div class="error-content">
+          <mat-icon class="error-icon">error</mat-icon>
+          <h3>Task Not Found</h3>
+          <p>The requested task could not be found.</p>
+          <button mat-raised-button color="primary" (click)="onBack()">
+            <mat-icon>arrow_back</mat-icon>
+            Back to Tasks
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 
